@@ -1,89 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>LegoDetective</title>
-  <script>
-    // 🛡️ UNIVERSAL ZERO-DEPENDENCY PHONE-FIRST ERROR BOUNDARY
-    (function() {
-      function renderError(err) {
-        var el = document.getElementById("luno-app-error-overlay");
-        if (!el) {
-          el = document.createElement("div");
-          el.id = "luno-app-error-overlay";
-          el.style.cssText = "position:fixed; top:8px; left:8px; right:8px; z-index:9999999; background:#1c080a; border:2px solid #ff7b72; border-radius:10px; padding:12px; font-family:monospace; color:#ff7b72; box-shadow:0 8px 32px rgba(0,0,0,0.9); box-sizing:border-box; max-height:90vh; overflow-y:auto;";
-          document.body.appendChild(el);
-        }
-        var msg = err.message || "Script execution error";
-        var src = err.source || err.filename || "";
-        var stack = (err.error && err.error.stack) ? err.error.stack : "";
-        var report = "⚠️ Application Error Report:\nMessage: " + msg + "\n" + (src ? ("Source: " + src + "\n") : "") + (stack ? ("Stack:\n" + stack + "\n") : "") + "URL: " + location.href + "\nTime: " + new Date().toISOString();
-        el.innerHTML = "<div style=\"display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #da3633; padding-bottom:6px; margin-bottom:8px;\">" +
-          "<strong style=\"color:#ff7b72; font-size:14px;\">⚠️ Application Error</strong>" +
-          "<button id=\"btn-err-close\" style=\"background:#21262d; color:#c9d1d9; border:1px solid #30363d; border-radius:4px; padding:3px 8px; cursor:pointer; font-family:monospace;\">✖</button>" +
-          "</div>" +
-          "<div style=\"font-size:12px; color:#c9d1d9; word-break:break-word; margin-bottom:8px;\"><strong>Error:</strong> " + msg + "</div>" +
-          (src ? ("<div style=\"font-size:11px; color:#8b949e; word-break:break-all; margin-bottom:8px;\"><strong>File:</strong> " + src + "</div>") : "") +
-          (stack ? ("<pre style=\"background:#0d1117; border:1px solid #30363d; padding:6px; border-radius:4px; font-size:10px; color:#ff7b72; white-space:pre-wrap; max-height:140px; overflow-y:auto; margin-bottom:8px;\">" + stack + "</pre>") : "") +
-          "<div style=\"display:flex; gap:6px;\">" +
-          "<button id=\"btn-err-copy\" style=\"flex:2; padding:8px; background:#238636; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer; font-family:monospace; font-size:12px;\">📋 Copy Error Details</button>" +
-          "<button id=\"btn-err-reload\" style=\"flex:1; padding:8px; background:#21262d; color:#00f2fe; border:1px solid #00f2fe; border-radius:6px; font-weight:bold; cursor:pointer; font-family:monospace; font-size:12px;\">🔄 Reload</button>" +
-          "</div>";
-        document.getElementById("btn-err-close").onclick = function() { el.remove(); };
-        document.getElementById("btn-err-reload").onclick = function() { location.reload(); };
-        document.getElementById("btn-err-copy").onclick = function() {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(report).then(function() {
-              var b = document.getElementById("btn-err-copy");
-              if (b) b.textContent = "✓ Copied to Clipboard!";
-              setTimeout(function() { if (b) b.textContent = "📋 Copy Error Details"; }, 2000);
-            });
-          } else {
-            prompt("Copy error report:", report);
-          }
-        };
-      }
-      window.addEventListener("error", function(e) {
-        var t = e.target;
-        if (t && (t.tagName === "SCRIPT")) {
-          renderError({ message: "Failed to load script resource: " + t.src, source: t.src });
-        } else if (!t || (t.tagName !== "IMG" && t.tagName !== "AUDIO" && t.tagName !== "VIDEO")) {
-          if (e.message || e.error) {
-            renderError({ message: e.message || "Runtime error", filename: e.filename, lineno: e.lineno, error: e.error });
-          }
-        }
-      }, true);
-      window.addEventListener("unhandledrejection", function(e) {
-        var r = e.reason;
-        renderError({ message: "Unhandled Promise Rejection: " + (r && (r.message || r)), error: r instanceof Error ? r : null });
-      });
-    })();
-  </script>
-  <script>
-    (function() {
-      var isStatic = location.hostname.endsWith("github.io") || location.hostname.endsWith("pages.dev") || location.protocol === "file:";
-      var libPrefix = isStatic ? "./library/" : "/Library/";
-      var script = document.createElement("script");
-      script.src = libPrefix + "LunoLoader.js?v=" + Date.now();
-      script.onload = function() {
-        if (typeof LunoLoader !== "undefined") {
-          LunoLoader.loadApp("app-root");
-        }
-      };
-      script.onerror = function() {
-        var alt = document.createElement("script");
-        alt.src = "./library/LunoLoader.js?v=" + Date.now();
-        alt.onload = function() {
-          if (typeof LunoLoader !== "undefined") LunoLoader.loadApp("app-root");
-        };
-        document.head.appendChild(alt);
-      };
-      document.head.appendChild(script);
-    })();
-  </script>
+  <link rel="stylesheet" href="css/legoFun.css">
 </head>
-<body style="margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#0d1117; color:#c9d1d9; font-family:monospace;">
+<body>
   <div id="app-root"></div>
+  <script src="/Library/LunoLoader.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof LunoLoader !== "undefined") {
+        LunoLoader.loadApp("app-root");
+      }
+    });
+  </script>
 </body>
 </html>
