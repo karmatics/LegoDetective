@@ -23,7 +23,7 @@
       position: relative;
     }
   </style>
-  <script src="/Library/LunoLoader.js" onerror="this.onerror=null; this.src='../Library/LunoLoader.js';"></script>
+  <script src="/Library/LunoLoader.js" onerror="this.onerror=null; (function(el){ var u=(window.location.hostname.endsWith('.github.io')?window.location.hostname.split('.')[0]:'karmatics'); el.src='https://'+u+'.github.io/Library/LunoLoader.js'; el.onerror=function(){ el.onerror=null; el.src='https://karmatics.github.io/Library/LunoLoader.js'; }; })(this);"></script>
 </head>
 <body>
   <div id="app-container"></div>
